@@ -27,7 +27,7 @@ def index():
         blog = Blog.query.filter_by(id=blog_id).first()
         return render_template('main-blog.html', blog=blog)
     else:
-        blogs = Blog.query.all()
+        blogs = Blog.query.order_by(-Blog.id).all()
         return render_template('main-blog.html', blogs=blogs)
 
 @app.route('/newpost', methods=['POST', 'GET'])

@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1><center>Add a Blog Entry</center></h1>
+<h1 class="header1">Add a Blog Entry</h1>
 <form action="/newpost" method="post">
     
 <label>
-    <h3>Title for your new blog:</h3>
+    <h3 class="special">Title for your new blog:</h3><br>
     <input type="text" name="title" size="30" value="{{blog_title}}"><br>
     <span class="error">{{blog_title_error}}</span><br><br>
 </label>
     
 <label>
-    <h3>Your New Blog:</h3>
-    <textarea name="body" size="40" value="{{blog_body}}">{{blog_body}}</textarea><br>
+    <h3 class="special">Your New Blog:</h3>
+    <textarea name="body" value="{{blog_body}}">{{blog_body}}</textarea><br>
     <span class="error">{{blog_body_error}}</span><br><br>
 </label>
 

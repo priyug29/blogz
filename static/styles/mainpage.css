@@ -1,0 +1,60 @@
+body {
+    background-image: url("gradient_bg.png");
+}
+.header1 {
+    background-color: slateblue;
+    font-size: 40px;
+    text-align: center;
+    padding: 30px;
+    color:white;
+    margin:2px;
+}
+.error {
+    color: red; 
+    font-style: italic; 
+    font-size: 20px; 
+}
+textarea {
+    margin: 10px 0;
+    width: 300px;
+    height: 130px;
+    font-size: 20;
+    
+}
+.button {
+    background-color : skyblue;
+    font-size: 17px;
+}
+p {
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+.special {
+    color: purple;
+    font-size: 25px;
+    margin: 1px;
+}
+input[type=text] {
+    width: 300px;
+    font-size: 20px;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+h3 a:link, a:visited {
+    background-color: white;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    display: inline-block;
+}
+h2 a:link, a:visited {
+    
+    color: blue;
+    padding: 14px 12px;
+    text-decoration: none;
+    font-size: 27px;
+}
