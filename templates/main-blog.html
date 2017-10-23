@@ -2,17 +2,18 @@
 
 {% block content %}
 {% if not blog %}
-<h1 class="header1">Build a Blog</h1><br><br>
+<br><h1>Blog Posts!</h1><br>
 {% endif %}
 {% for blog in blogs %}
 <h2><a href="/blog?id={{blog.id}}">{{blog.title}}</a></h2>
 <p>{{blog.body}}</p>
-
+<p>written by <a href="/blog?user={{ blog.owner.id }}">{{ blog.owner.username }}</a></p>
 <hr>
 {% endfor %}
 {% if blog %}
 
-<h1 class="header1">{{blog.title}}</h1><br>
-<p>{{blog.body}}</p>
+<h1 class="post-title">{{blog.title}}</h1><br>
+<p class="post-body">{{blog.body}}</p>
+<p>written by <a href="/blog?user={{ blog.owner.id }}">{{ blog.owner.username }}</a></p>
 {% endif %}
 {% endblock %}

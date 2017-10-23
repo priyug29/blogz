@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="header1">Add a Blog Entry</h1>
+<h1>New Blog </h1>
 <form action="/newpost" method="post">
     
 <label>
     <h3 class="special">Title for your new blog:</h3><br>
-    <input type="text" name="title" size="30" value="{{blog_title}}"><br>
+    <input type="text" name="title" size="30" value="{{blog_title}}">
     <span class="error">{{blog_title_error}}</span><br><br>
 </label>
     

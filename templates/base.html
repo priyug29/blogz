@@ -1,13 +1,33 @@
 <!doctype html>
 <html>
-     <div><h3><a href="/blog">Main Blog Page</a> &nbsp; &nbsp;<a href="/newpost">Add a Blog Entry</a></h3></div>
-    <head>
-        <link rel= "stylesheet" type= "text/css" href="/static/styles/mainpage.css">
-        <title class="header">{{title}}</title>
+    <nav>
+    
+    <ul id="move-right">
+     <li><a href="login">login</a></li>
+    <li> <a href="logout">logout</a></li>
+    </ul>
+    <ul>
+        <li><a href="/">Home</a> </li>
+        <li><a href="/blog">All Posts</a> </li>
+        <li><a href="/newpost">New Post</a></h3></li>
+    </ul>
+    </nav>
+<head>
+    <link rel= "stylesheet" type= "text/css" href="/static/styles/mainpage.css">
+    <title>{{title}}</title>
         
-    </head>
+</head>
 <body>
-
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class=flashes>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+    
     {% block content %}
     {% endblock %}
 
