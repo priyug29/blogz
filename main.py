@@ -1,37 +1,7 @@
 from flask import Flask, request, redirect, render_template, session, flash
-from flask_sqlalchemy import SQLAlchemy
+from models import Blog, User
+from app import app, db
 import cgi
-app = Flask(__name__)
-app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://blogz:akshat123@localhost:8889/blogz'
-app.config['SQLALCHEMY_ECHO'] = True
-db = SQLAlchemy(app)
-app.secret_key = 'y337kGcys&zP3B'
-
-
-class Blog(db.Model):
-
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(255))
-    body = db.Column(db.String(255))
-    owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    
-    def __init__(self, title, body, owner):
-        self.title = title
-        self.body = body
-        self.owner = owner
-    
-
-class User(db.Model):
-
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(120), unique=True)
-    password = db.Column(db.String(120))
-    blogs = db.relationship('Blog', backref = 'owner') 
-
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
 
 @app.route('/blog', methods=['POST', 'GET'])
 def blog():
@@ -140,7 +110,7 @@ def login():
                 error = "Invalid Password"
         else :
             error = "Invalid Username"
-            
+
         if(error):
             return render_template('login.html', error=error)        
         #flash('bad username or password')
@@ -160,7 +130,7 @@ def index():
 
 @app.before_request
 def require_login():
-    allowed_routes = ['login', 'signup', 'index', 'blog']
+    allowed_routes = ['login', 'signup', 'index', 'blog', 'static']
     print(request.endpoint)
     if request.endpoint not in allowed_routes and 'username' not in session:
         return redirect('/login')
