@@ -1,4 +1,5 @@
 from app import db
+from hashutils import make_pw_hash, check_pw_hash
 
 class Blog(db.Model):
 
@@ -17,9 +18,9 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(120), unique=True)
-    password = db.Column(db.String(120))
+    pw_hash = db.Column(db.String(120))
     blogs = db.relationship('Blog', backref = 'owner') 
 
     def __init__(self, username, password):
         self.username = username
-        self.password = password
+        self.pw_hash = make_pw_hash(password)

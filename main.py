@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect, render_template, session, flash
 from models import Blog, User
 from app import app, db
+from hashutils import make_pw_hash, check_pw_hash
 import cgi
 
 @app.route('/blog', methods=['POST', 'GET'])
@@ -102,7 +103,7 @@ def login():
         users = User.query.filter_by(username=username)
         if users.count() == 1:
             user = users.first()
-            if password == user.password:
+            if user and check_pw_hash(password, user.pw_hash):
                 session['username'] = user.username
                 #flash('welcome back, '+user.username)
                 return redirect("/newpost")
